@@ -70,18 +70,32 @@ book:
     #  chapters:
     #    - prereqs/dev-tools/code-climate.qmd
 
-
-
     - "-------------"
 
     - part: "Notes"
       chapters:
-        - notes/style-guidelines.qmd
-        - notes/documentation.qmd
-        - notes/refactoring.qmd
-        - notes/modules-imports.qmd
-        - notes/object-oriented-programming.qmd
-        - notes/custom-classes.qmd
+
+        - href: notes/style-guidelines.qmd
+          text: "Code Readability and Style"
+
+        - href: notes/documentation.qmd
+          text: "Code Documentation"
+
+        - href: notes/complexity.qmd
+          text: "Code Complexity"
+
+        - href: notes/refactoring.qmd
+          text: "Refactoring"
+
+        - href: notes/modules-imports.qmd
+          text: "Code Modularity"
+
+        - href: notes/automated-testing.qmd
+          text: "Automated Testing"
+
+        - href: notes/continuous-integration.qmd
+          text: "Continuous Integration"
+
 
     - "-------------"
     - part: "Exercises"
@@ -96,10 +110,23 @@ book:
 
 
 
-    #- "-------------"
+    - "-------------"
+
+  appendices:
+
+    - href: notes/code-climate.qmd
+      text: "Code Climate"
+
+    - href: notes/object-oriented-programming.qmd
+      text: "Object-oriented Programming"
+
+    - href: notes/custom-classes.qmd
+      text: "Custom Classes"
+
+    - href: notes/class-inheritance.qmd
+      text: "Class Inheritance"
 
 
-  #appendices:
 
 
   # shows up at bottom of page

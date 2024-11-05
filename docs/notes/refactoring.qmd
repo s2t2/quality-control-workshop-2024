@@ -35,24 +35,19 @@ In practice, refactoring includes a process of simplifying an application's sour
 
 ## Benefits of Refactoring
 
-Improvements in:
+Refactoring can lead to improvements in:
 
   + Code Maintainability
   + Code Readability
   + Code Quality
   + System Extensibility
 
-Reductions in:
+Refactoring can lead to reductions in:
 
   + Code Complexity
   + System Costs
 
-### Enabling Testing
-
-Another benefit of refactoring is it often makes our code easier to test. To test an application, we first need to refactor it into smaller components that can be run and tested in isolation. This generally involves the usage of custom functions and custom classes.
-
-We will delve into automated testing in much more detail in a future workshop.
-
+Another benefit of refactoring is it enables testing. To test an application, we first need to refactor it into smaller components that can be run and tested in isolation. This generally involves translating code into custom functions and custom classes.
 
 ## When to Refactor
 
@@ -64,9 +59,7 @@ In general, consider refactoring when you notice yourself writing the same or si
 
 When you want to test some functionality of your code, you may find yourself refactoring using a custom function, or a custom class that has multiple methods and properties which can be tested separately.
 
-Tools like the [Code Climate](https://codeclimate.com/quality/) platform can also perform automated assessments of code complexity, helping you identify opportunities to refactor.
-
-![Complexity Assessment from Code Climate Quality Service](../images/code-climate/complexity-issues.png){height=350}
+Tools like the [Code Climate](./code-climate.qmd) platform can also perform automated assessments of code complexity, helping you identify opportunities to refactor.
 
 ## How to Refactor
 

@@ -1,0 +1,14 @@
+# Code Complexity
+
+
+Complex codebases are harder to manage, maintain, and debug.
+
+Developers strive to reduce both **time complexity** (the number of operations required to perform a task) and **space complexity** (the amount of memory required to perform a task).
+
+This not only improves runtime performance but also enhances the system's ability to scale efficiently.
+
+## Complexity Assessment Tools
+
+Tools like the [Code Climate](./code-climate.qmd) platform can perform automated assessments of code complexity, helping you identify opportunities to refactor.
+
+![Complexity Assessment from Code Climate Quality Service](../images/code-climate/complexity-issues.png){height=350}

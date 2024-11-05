@@ -1,6 +1,8 @@
-# Style Guidelines
+# Code Readability and Style
 
-## Motivations
+Readable code is easier to understand, and therefore also easier to maintain.
+
+## Style Guidelines
 
 Python style guidelines are helpful to follow because they promote readability, consistency, and maintainability of code.
 
@@ -12,6 +14,6 @@ Following these guidelines can lead to more professional, reliable, and maintain
 
 ## Style Checking Tools
 
-  + [The Code Climate Platform](/prereqs/dev-tools/code-climate.qmd)
   + [The `autopep8` Package](https://pypi.org/project/autopep8/)
   + [The `black` Package](https://black.readthedocs.io/en/stable/getting_started.html)
+  + [The Code Climate Platform](./code-climate.qmd)
