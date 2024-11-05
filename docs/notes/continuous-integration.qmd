@@ -1,1 +1,139 @@
 # Continuous Integration
+
+Once [tests](./automated-testing.qmd) have been automated, they can be configured to run on a separate server any time a new feature is proposed. This process is called **Continuous Integration (CI)**, and is one of the techniques for preventing bugs and defects from reaching users.
+
+A codebase (i.e. Git repository) can be configured to prevent new versions of the software from being "released" or "merged" until accompanying tests have passed.
+
+> In recent years CI has become a best practice for software development and is guided by a set of key principles. Among them are revision control, build automation and automated testing. - [Code Ship website](https://codeship.com/continuous-integration-essentials)
+
+> Continuous integration is a DevOps software development practice where developers regularly merge their code changes into a central repository, after which automated builds and tests are run. Continuous integration most often refers to the build or integration stage of the software release process and entails both an automation component (e.g. a CI or build service) and a cultural component (e.g. learning to integrate frequently). The key goals of continuous integration are to find and address bugs quicker, improve software quality, and reduce the time it takes to validate and release new software updates. - [Amazon AWS website](https://aws.amazon.com/devops/continuous-integration/)
+
+> Continuous Integration is a software development practice where members of a team integrate their work frequently, usually each person integrates at least daily - leading to multiple integrations per day. Each integration is verified by an automated build (including test) to detect integration errors as quickly as possible. Many teams find that this approach leads to significantly reduced integration problems and allows a team to develop cohesive software more rapidly. This article is a quick overview of Continuous Integration summarizing the technique and its current usage. - [Martin Fowler](https://martinfowler.com/articles/continuousIntegration.html)
+
+> CI emerged as a best practice because software developers often work in isolation, and then they need to integrate their changes with the rest of the team's code base. Waiting days or weeks to integrate code creates many merge conflicts, hard to fix bugs, diverging code strategies, and duplicated efforts.  CI requires the development team's code be merged to a shared version control branch continuously to avoid these problems.
+>
+> CI keeps the main branch clean. Teams can leverage modern version control systems such as Git to create short-lived feature branches to isolate their work. A developer submits a "pull request" when the feature is complete and, on approval of the pull request, the changes get merged into the main branch. Then the developer can delete the previous feature branch. Development teams repeat the process for additional work. The team can establish branch policies to ensure the main branch meets desired quality criteria. - [Visual Studio](https://www.visualstudio.com/learn/what-is-continuous-integration/)
+
+## Continuous Integration for Python Applications with GitHub Actions
+
+We can use [GitHub Actions](https://github.com/features/actions) for continuous integration purposes, to run our automated tests and other automated checks comprising an automated build process.
+
+## Workflow Setup
+
+To implement GitHub Actions for CI, we need to setup a corresponding workflow configuration file.
+
+From your repository's "Actions" tab on GitHub, add the action specifically called "Python application". Conclude the commit to add a config file called ".github/workflows/python-app.yml" to the repository on GitHub. The file's contents will look something like this:
+
+```yml
+# This workflow will install Python dependencies, run tests and lint with a single version of Python
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python
+
+name: Python application
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v3
+      with:
+        python-version: "3.10"
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install flake8 pytest
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+    - name: Lint with flake8
+      run: |
+        # stop the build if there are Python syntax errors or undefined names
+        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+        # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
+        flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+
+    - name: Test with pytest
+      run: |
+        pytest
+
+```
+
+
+Remember to pull down these changes to update your local repository to include this config file as well, before proceeding.
+
+Now, anytime we push or merge a new commit to the repository's main branch, that will trigger the workflow to execute, and run the tests as a part of the automated build process.
+
+### Workflow Customization
+
+For further customization of the workflow config file, see the examples below.
+
+#### App with Environment Variables
+
+If your app uses environment variables, you'll need to add them as repository secrets and update your build file to reference the secrets. See the [app with secrets](./github-actions/python-app-with-secrets.yml) example workflow file, with relevant section copied below:
+
+```yml
+    # ...
+
+    - name: Test with pytest
+      env:
+        # set environment variables to use during testing
+        # ... using the repository secret values set securely via repo settings
+        MY_API_KEY: ${{ secrets.MY_API_KEY }}
+        MY_API_SECRET: ${{ secrets.MY_API_SECRET }}
+      run: |
+        pytest
+```
+
+
+#### App with Google Service Account Credentials
+
+If your app uses Google Service Account Credentials JSON file, you'll need to paste the JSON contents into a new repository secret specifically called `GOOGLE_API_CREDENTIALS`, and update your build file to reference those credentials. See the [app with google credentials](./github-actions/python-app-with-google-creds.yml) example workflow file, with relevant sections copied below:
+
+```yml
+    # ...
+
+    #
+    # USE OFFICIAL GOOGLE ACTION TO CREATE A CREDENTIALS JSON FILE
+    # https://github.com/google-github-actions/auth
+    #
+    - id: 'auth'
+      name: 'Authenticate to Google Cloud'
+      uses: 'google-github-actions/auth@v0'
+      with:
+        # uses this encrypted secret set via github repo settings
+        # which is essentially a copy of the JSON credentials file contents (for the dev project)
+        credentials_json: '${{ secrets.GOOGLE_API_CREDENTIALS }}'
+        # this will create a credentials file with a randomized name
+        create_credentials_file:  true
+
+    #
+    # RUN TESTS
+    #
+    - name: Test with pytest
+      env:
+        # access path of credentials file created by earlier auth step:
+        GOOGLE_APPLICATION_CREDENTIALS: ${{ steps.auth.outputs.credentials_file_path }}
+      run: |
+        pytest
+```
+
+#### App with Database
+
+See the [app with database](./github-actions/python-app-with-database.yml) example workflow file.
+
+### Workflow Status Badge
+
+After you have setup GitHub Actions for CI, consider adding a [workflow status badge](https://docs.github.com/en/actions/monitoring-and-troubleshooting-workflows/adding-a-workflow-status-badge) to your repository's README file, to showcase the status of the CI build.

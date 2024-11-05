@@ -127,8 +127,6 @@ book:
       text: "Class Inheritance"
 
 
-
-
   # shows up at bottom of page
   #body-footer: "&copy; Copyright 2024, Your Name Here"
 
@@ -137,7 +135,16 @@ book:
   #    <p>&copy; Copyright 2024, GWU Open Source Program Office (OSPO)</p>
 
 
+resources:
+  - notes/github-actions/*.yml
+  #- notes/github-actions/python-app-default.yml
+  #- notes/github-actions/python-app-with-database.yml
+  #- notes/github-actions/python-app-with-google-creds.yml
+  #- notes/github-actions/python-app-with-secrets.yml
+
+
 #bibliography: references.bib
+
 
 format:
   html:
