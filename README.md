@@ -1,6 +1,6 @@
 # quality-control-workshop-2024
 
-Software Quality Control in Python - Mega Workshop
+Quality Control for Python Applications - Mega Workshop
 
 **Description:** Improve the maintainability and quality of your code. Attendees will become familiar with code modularity and organization principles, as well as quality control methods such as automated testing and continuous integration.
 
