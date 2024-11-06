@@ -3,11 +3,11 @@
 # Quality Control for Python Applications
 :::
 
-**Description:**
-
 Improve the maintainability and quality of your code. Attendees will become familiar with code modularity and organization principles, as well as quality control methods such as automated testing and continuous integration.
 
-**Required Software:**
+## Prerequisites
+
+Required Software:
 
 + GitHub Desktop (requires a GitHub account)
 + VS Code Text Editor
@@ -16,7 +16,7 @@ Improve the maintainability and quality of your code. Attendees will become fami
 
 Attendees should be familiar with [Python Development Tools](https://s2t2.github.io/python-dev-tools-workshop-2024/) and [Version Control](https://s2t2.github.io/version-control-workshop-2024/) before attempting this workshop.
 
-## Part 1: Refactoring Python Applications
+## Parts 1 and 2: Code Maintenance and Organization
 
 **Learning Objectives:**
 
@@ -27,7 +27,7 @@ Attendees should be familiar with [Python Development Tools](https://s2t2.github
 5. Organize code into modules to enhance scalability and maintainability, and practice importing code across multiple files.
 6. Use automated tools such as Code Climate to perform automated assessments of code complexity and maintainability.
 
-## Part 2: Testing Python Applications
+## Part 3: Code Verification and Testing
 
 **Learning Objectives:**
 

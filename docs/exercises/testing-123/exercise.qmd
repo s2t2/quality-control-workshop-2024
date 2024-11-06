@@ -1,4 +1,4 @@
-# "Testing 1, 2, 3" Exercise
+# "Testing 1, 2, 3" Exercise {.unnumbered}
 
 To setup this exercise, bring up an existing repository, or create a new repository called "testing-123", and navigate there from the command line. Also open the repository using your text editor.
 

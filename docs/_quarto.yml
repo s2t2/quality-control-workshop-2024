@@ -97,10 +97,6 @@ book:
         - href: notes/modules-imports.qmd
           text: "Code Modularity"
 
-    #- "-------------"
-    #- part: "Object-oriented Programming"
-    #  chapters:
-
         - href: notes/object-oriented-programming.qmd
           text: "Object-oriented Programming"
 
@@ -117,11 +113,11 @@ book:
         - href: notes/automated-testing.qmd
           text: "Automated Testing"
 
-        - href: notes/pytest.qmd
-          text: "The `pytest` Package"
-
         - href: notes/continuous-integration.qmd
           text: "Continuous Integration"
+
+        - href: notes/pytest.qmd
+          text: "The `pytest` Package"
 
         - href: notes/github-actions.qmd
           text: "GitHub Actions"
@@ -133,6 +129,9 @@ book:
 
   appendices:
 
+    - href: exercises/modules-imports/exercise.qmd
+      text: "Modules and Imports"
+
     - href: exercises/testing-123/exercise.qmd
       text: "Testing 1,2,3"
 
@@ -142,8 +141,8 @@ book:
     #- href: exercises/object-oriented-programming/exercise.qmd
     #  text: Game Loop Class (RPS)
 
-    - href: exercises/notebook-translation/exercise.qmd
-      text: "Notebook Translation"
+    #- href: exercises/notebook-translation/exercise.qmd
+    #  text: "Notebook Translation"
 
 
 

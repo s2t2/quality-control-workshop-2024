@@ -1,6 +1,6 @@
 
 
-# "Game Loop" Exercise (RPS)
+# "Game Loop" Exercise (RPS) {.unnumbered}
 
 In this exercise we will practice refactoring using an object oriented approach.
 

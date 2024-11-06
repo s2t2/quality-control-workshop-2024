@@ -9,7 +9,7 @@ execute:
 ---
 
 
-# Documentation
+# Code Documentation
 
 Documentation helps people (or your future self) understand how to use your software.
 
@@ -19,6 +19,37 @@ Specific ways of implementing documentation in Python are with docstrings and ty
 
 When Python code is documented according to certain conventions, it is possible to auto-generate entire documentation reference websites, using auto-documentation tools.
 
+## Type Hints
+
+One way of documenting functions more formally is by implementing [type hints](https://docs.python.org/3/library/typing.html).
+
+Type hints allow us to specify:
+
+  1. Which datatypes are expected for each parameter, by using a colon (`:`) to the right of each parameter name
+  2. Which datatype will be returned by the function, by using a right arrow (`->`) to the right of the function definition
+
+
+```{python}
+
+# FUNCTION DEFINITION:
+
+#def enlarge(n):
+#    return n * 100
+
+def enlarge(n:float) -> float: # OBSERVE THE TYPE HINTS
+    return n * 100.0
+
+```
+
+In this example we are using a basic datatype, `float`, in the type hints, but for more advanced type hints, we can consider using the [`typing` module](https://docs.python.org/3/library/typing.html).
+
+For more information about type hints, consult the [type hints cheat sheet](https://mypy.readthedocs.io/en/stable/cheat_sheet_py3.html).
+
+By default, Python is dynamically typed, meaning you don't need to declare datatypes of variables when defining them. However type hints can make Python feel more statically typed.
+
+Ultimately type hints are just suggestions, and they won't perform validations or prevent different datatypes from being passed in.
+
+
 ## Docstrings
 
 **Docstrings** allow Python developers to document their code in a way which can be interpreted by other computers and humans alike.
@@ -26,17 +57,14 @@ When Python code is documented according to certain conventions, it is possible 
 > "The docstring for a function or method should summarize its behavior and document its arguments, return value(s), side effects, exceptions raised, and restrictions on when it can be called (all if applicable). Optional arguments should be indicated. It should be documented whether keyword arguments are part of the interface." - [PEP 257](https://www.python.org/dev/peps/pep-0257/)
 
 
-Example function, before documentation:
-
-```py
-def enlarge(n):
-    return n * 100
-
-```
-
 Example function, complete with docstring:
 
 ```py
+# FUNCTION DEFINITION:
+
+#def enlarge(n):
+#    return n * 100
+
 def enlarge(n):
     """
     Enlarges a number.
@@ -64,7 +92,7 @@ You don't need to follow any specific conventions with your docstrings for them 
   + [Numpy-style Docstrings](https://numpydoc.readthedocs.io/en/latest/format.html)
   + [Google-style Docstrings](https://google.github.io/styleguide/pyguide.html#38-comments-and-docstrings)
 
-### Auto-Documentation
+### Auto-Documentation Sites
 
 Tools like [Sphinx](https://www.sphinx-doc.org/en/master/), [MkDocs](https://www.mkdocs.org/), [Jupyter Book](https://jupyterbook.org/en/stable/intro.html), and [Quarto](https://quarto.org/) can generate auto-generate entire documentation sites based on docstring content, especially if the docstrings conform to certain conventions. [Read The Docs](https://about.readthedocs.com/) is a popular hosting provider for Python package documentation sites.
 
@@ -96,35 +124,3 @@ class Api:
         ```
     """
 ```
-
-
-## Type Hints
-
-Another way of documenting functions more formally is a [type hint](https://docs.python.org/3/library/typing.html).
-
-Type hints allow us to specify:
-
-  1. Which datatypes are expected for each parameter, by using a colon (`:`) to the right of each parameter name
-  2. Which datatype will be returned by the function, by using a right arrow (`->`) to the right of the function definition
-
-
-```{python}
-
-# FUNCTION DEFINITION:
-
-def enlarge(n:float) -> float: # OBSERVE THE TYPE HINTS
-    return n * 100.0
-
-# FUNCTION INVOCATIONS:
-
-print(enlarge(9))
-
-print(enlarge(3))
-
-x = 10
-print(enlarge(x))
-```
-
-In this example we are using a basic datatype (`float`) in the type hints, but for more advanced type hints, we can consider using the [`typing` module](https://docs.python.org/3/library/typing.html). For more information, consult the [type hints cheat sheet](https://mypy.readthedocs.io/en/stable/cheat_sheet_py3.html).
-
-Ultimately these type hints are just suggestions, and they won't perform validations or prevent different datatypes from being passed in.

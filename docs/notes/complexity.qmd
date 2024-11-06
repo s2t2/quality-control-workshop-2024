@@ -9,6 +9,8 @@ This not only improves runtime performance but also enhances the system's abilit
 
 ## Complexity Assessment Tools
 
-Tools like the [Code Climate](./code-climate.qmd) platform can perform automated assessments of code complexity, helping you identify opportunities to refactor.
+Tools like the [Code Climate](./code-climate.qmd#code-complexity-assessments) platform can perform automated assessments of code complexity, helping you identify opportunities to refactor.
 
+<!--
 ![Complexity Assessment from Code Climate Quality Service](../images/code-climate/complexity-issues.png){height=450}
+-->

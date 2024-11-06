@@ -1,4 +1,4 @@
-# "Codebase Cleanup" Exercise
+# "Codebase Cleanup" Exercise {.unnumbered}
 
 In this exercise we will cover an example of refactoring, as well as considerations for importing code from one file to another in Python.
 
