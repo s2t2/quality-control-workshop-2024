@@ -71,8 +71,7 @@ book:
     #    - prereqs/dev-tools/code-climate.qmd
 
     - "-------------"
-
-    - part: "Notes"
+    - part: "Code Maintenance"
       chapters:
 
         - href: notes/style-guidelines.qmd
@@ -84,59 +83,69 @@ book:
         - href: notes/complexity.qmd
           text: "Code Complexity"
 
+        - href: notes/code-climate.qmd
+          text: "The Code Climate Platform"
+
+
+    - "-------------"
+    - part: "Code Organization"
+      chapters:
+
         - href: notes/refactoring.qmd
           text: "Refactoring"
-
 
         - href: notes/modules-imports.qmd
           text: "Code Modularity"
 
+    #- "-------------"
+    #- part: "Object-oriented Programming"
+    #  chapters:
+
+        - href: notes/object-oriented-programming.qmd
+          text: "Object-oriented Programming"
+
+        - href: notes/custom-classes.qmd
+          text: "Custom Classes"
+
+        - href: notes/class-inheritance.qmd
+          text: "Class Inheritance"
+
+    - "-------------"
+    - part: "Code Verification"
+      chapters:
+
         - href: notes/automated-testing.qmd
           text: "Automated Testing"
+
+        - href: notes/pytest.qmd
+          text: "The `pytest` Package"
 
         - href: notes/continuous-integration.qmd
           text: "Continuous Integration"
 
-
-    - "-------------"
-    - part: "Exercises"
-      chapters:
-        - href: exercises/testing-123/exercise.qmd
-          text: "Testing 1,2,3"
-
-        - href: exercises/codebase-cleanup/exercise.qmd
-          text: "Codebase Cleanup (RPS)"
-
-        #- href: exercises/object-oriented-programming/exercise.qmd
-        #  text: Game Loop Class (RPS)
-
-        - href: exercises/notebook-translation/exercise.qmd
-          text: "Notebook Translation"
-
+        - href: notes/github-actions.qmd
+          text: "GitHub Actions"
 
 
 
     - "-------------"
+
 
   appendices:
 
-    - href: notes/object-oriented-programming.qmd
-      text: "Object-oriented Programming"
+    - href: exercises/testing-123/exercise.qmd
+      text: "Testing 1,2,3"
 
-    - href: notes/custom-classes.qmd
-      text: "Custom Classes"
+    - href: exercises/codebase-cleanup/exercise.qmd
+      text: "Codebase Cleanup (RPS)"
 
-    - href: notes/class-inheritance.qmd
-      text: "Class Inheritance"
+    #- href: exercises/object-oriented-programming/exercise.qmd
+    #  text: Game Loop Class (RPS)
 
-    - href: notes/code-climate.qmd
-      text: "Code Climate"
+    - href: exercises/notebook-translation/exercise.qmd
+      text: "Notebook Translation"
 
-    - href: notes/pytest.qmd
-      text: "The `pytest` Package"
 
-    - href: notes/github-actions.qmd
-      text: "GitHub Actions"
 
 
 
@@ -147,6 +156,8 @@ book:
   #  center: |
   #    <p>&copy; Copyright 2024, GWU Open Source Program Office (OSPO)</p>
 
+language:
+  section-title-appendices: "Exercises"
 
 resources:
   - notes/github-actions/*.yml
