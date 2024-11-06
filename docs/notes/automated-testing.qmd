@@ -20,7 +20,7 @@ Well-tested applications in general tend to be of a higher quality than untested
 
 Written expectations and descriptions of desired functionality mitigate risks of "brain drain" over time as development teams experience attrition. In this way, well-tested applications tend to be easier to maintain over time.
 
-## Test-driven Development (TDD)
+### Test-driven Development (TDD)
 
 Sometimes software developers write tests after completing the development process. In other cases, developers write tests before and during the development process. This latter approach is called **Test-driven Development (TDD)**. When following TDD, tests become a bridge between requirements of desired functionality (i.e. "the app should do xyz") and explicit checks for that functionality.
 

@@ -1,0 +1,136 @@
+# The `pytest` Package
+
+References:
+
+  + <https://github.com/pytest-dev/pytest>
+  + <https://docs.pytest.org/en/latest>>
+  + <https://docs.pytest.org/en/latest/getting-started.html#our-first-test-run>
+  + <https://docs.pytest.org/en/latest/goodpractices.html>
+  + <https://docs.pytest.org/en/latest/usage.html#dropping-to-pdb-python-debugger-on-failures>
+  + <http://python-guide-pt-br.readthedocs.io/en/latest/writing/tests/#py-test>
+  + <https://docs.pytest.org/en/latest/capture.html>
+
+## Installation
+
+Installing Pytest:
+
+```sh
+pip install pytest
+```
+
+## Configuration
+
+It helps to add a file called "conftest.py" to the root directory of your repository, or to the "test" directory. This helps `pytest` find the application code and facilitates successful imports.
+
+Another use for the "conftest.py" file is to define some code, like fixtures, which can be shared across multiple test files.
+
+## Usage
+
+The `pytest` package is generally used as a command-line utility for running pre-defined files of "test" code. Follow the ["Testing 1,2,3" Exercise](../exercises/testing-123/exercise.qmd) to get acclimated with `pytest`.
+
+
+Example invocations:
+
+```sh
+# run all tests:
+pytest
+
+# suppress warnings:
+pytest --disable-pytest-warnings
+
+# see print statements:
+pytest  -s
+
+# run a specific test:
+pytest test/my_test.py
+
+# run a specific function in a specific test:
+pytest test/my_test.py -k 'test_my_thing'
+```
+
+### Expecting Errors
+
+The `pytest` package can be imported to facilitate assertions that errors will be raised:
+
+```py
+# this is an example test file...
+
+import pytest
+
+def test_divide_by_zero():
+    with pytest.raises(Exception) as e_info:
+        # we expect this code will raise an error (division by zero)
+        result = 2 / 0
+```
+
+### Fixtures
+
+If there is a time-intensive or memory-intensive operation used by multiple tests, we can use a "fixture" to perform that operation just once. This is a big time saver.
+
+We'll generally place the fixtures in the same file as the tests that need them, but if multiple test files need to share the same fixture, we'll move it to the "conftest.py" file:
+
+```py
+# this is the "conftest.py" file
+
+import pytest
+
+# EXAMPLE FIXTURES:
+# "module" scope fixtures are only executed once, and shared
+# if fixtures need to be shared across multiple test files, we define them here
+
+@pytest.fixture(scope="module")
+def nlp():
+    import spacy
+    print("LOADING THE LANGUAGE MODEL...")
+    return spacy.load("en_core_web_md")
+
+
+@pytest.fixture(scope="module")
+def parsed_response():
+    import requests
+    import json
+    print("MAKING A NETWORK REQUEST...")
+    response = requests.get("https://www.example.com/api/")
+    return json.loads(response.text)
+
+```
+
+After our fixtures are defined, we can pass them into the test functions as parameters. There is no need to import fixtures that have been defined in the "conftest.py" file, as they will be implicitly loaded and available for use.
+
+```py
+# this is an example test file...
+
+def test_my_language_model(nlp):
+    # do something with the nlp fixture
+    # assert something
+
+def test_my_calculations(parsed_response):
+    # do something with the parsed_response fixture
+    # assert something
+```
+
+
+### Skipping Tests on CI
+
+If there are tests which invoke functions that issue network requests, we'll sometimes want to prevent that from happening on the CI server.
+
+To skip any test function, mark it to be skipped conditionally, for example if a `CI` environment variable is set to "true". This environment variable is set by default on some CI servers, or you could configure your CI server to run tests with `CI=true pytest` instead of just `pytest` (see note below):
+
+```py
+# this is an example test file...
+
+import os
+import pytest
+
+from app.my_file import fetch_data
+
+CI_ENV = bool(os.getenv("CI") == "true")
+
+@pytest.mark.skipif(CI_ENV, reason="avoid issuing HTTP requests on the CI server")
+def test_fetch_data():
+    data = fetch_data() # makes a network request
+    assert isinstance(data, list) # for example
+
+```
+
+> NOTE: if using GitHub actions, you may need to update the "python.yml" GitHub Actions config file so the last line says `CI="true" pytest` instead of just `pytest`. Remember to save the file and make a commit before re-pushing your code.

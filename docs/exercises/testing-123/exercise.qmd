@@ -1,0 +1,71 @@
+# "Testing 1, 2, 3" Exercise
+
+To setup this exercise, bring up an existing repository, or create a new repository called "testing-123", and navigate there from the command line. Also open the repository using your text editor.
+
+Inside the repository, create subdirectories called "app" and "test", respectively.
+
+In the "app" subdirectory, create a new file called "utils.py", and place inside the following contents:
+
+```python
+# this is the "app/utils.py" file:
+
+def enlarge(i):
+    return i * 100
+
+
+if __name__ == "__main__":
+
+    my_number = float(input("Please input a number: "))
+    print(my_number)
+
+    result = enlarge(my_number)
+    print(result)
+
+```
+
+Observe, we can run this file from the command-line:
+
+```sh
+python -m app.utils
+```
+
+In the "test" subdirectory, create a new file called "utils_test.py", and place inside the following contents:
+
+```python
+# this is the "test/utils_test.py" file...
+
+from app.utils import enlarge
+
+def test_enlarge():
+    result = enlarge(3)
+    assert result == 300
+```
+
+Observe, the test file imports the function we want to test from where it has been defined, contains a test function which directly invokes the function we want to test, and describes expectations for what it means for that function to be working properly.
+
+We will use [the `pytest` package](../../notes/pytest.qmd) to find and run these tests. There are some rules about how to name your tests in order for `pytest` to be able to successfully find and run them:
+
+  + The test directory name must be "test" singular, or "tests" plural.
+  + The test file name must begin with "test_", or end with "_test.py".
+  + The test function name must begin with "test_".
+
+We run the tests from the command-line using the `pytest` package (which needs to be installed first):
+
+```sh
+pytest
+```
+
+If you run into an error "ModuleNotFoundError: No module named 'app'", you need to add some configuration files to help `pytest` find and import code from the "app" directory:
+
+  1. Add a special file called the "\_\_init_\_.py" to the "app" directory. This is a Python convention that enables code in this module to be found and imported.
+  2. Add another special file called "conftest.py" to either the repository's root directory, or into the "test" directory. This helps orient `pytest` to the structure of your repository.
+
+Even if these files are blank, their presence will help us avoid the errors we were seeing earlier.
+
+Once you have finished configuring the "app/\_\_init_\_.py" and "conftest.py" files, run the tests again, and they should pass:
+
+```sh
+pytest #> 1 passed in 0.01 seconds
+```
+
+Nice job! You're testing like a pro!
