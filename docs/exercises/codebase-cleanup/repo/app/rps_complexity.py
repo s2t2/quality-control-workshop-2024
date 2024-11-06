@@ -1,4 +1,5 @@
 
+
 VALID_OPTIONS = ["rock", "paper", "scissors"]
 
 # NOTE: all of these solutions assume valid inputs are being passed in
