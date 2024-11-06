@@ -26,6 +26,8 @@ book:
   repo-actions: [edit, issue, source]
   #downloads: [pdf, epub, docx]
 
+  reader-mode: true
+
   # https://quarto.org/docs/websites/website-tools.html#google-analytics
   #google-analytics: "G-..."
 
@@ -164,6 +166,8 @@ resources:
   #- notes/github-actions/python-app-with-database.yml
   #- notes/github-actions/python-app-with-google-creds.yml
   #- notes/github-actions/python-app-with-secrets.yml
+  - exercises/codebase-cleanup/repo/*
+  - exercises/codebase-cleanup/repo/*/*.py
 
 
 #bibliography: references.bib

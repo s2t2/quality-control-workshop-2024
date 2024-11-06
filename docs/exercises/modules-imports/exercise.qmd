@@ -1,7 +1,10 @@
 
 # "Modules and Imports" Exercise {.unnumbered}
 
-In the following example, we are setting up two files, one called "utils.py" containing some code that will be imported, and another file called "script.py" to import and use that code.
+To setup this exercise, bring up an existing repository, or create a new repository called "imports-practice". Navigate there from the command line, and open the repository using your text editor.
+
+
+In the following example, we are setting up two files in the repo's "app" subdirectory: one called "utils.py" containing some code that will be imported, and another called "script.py" which will import and use that code.
 
 
 In the "utils.py" file, we are defining a simple utility function called `enlarge`. If we weren't concerned with code modularity, we could invoke that function on the left margin, in the program's global scope, and that is valid:

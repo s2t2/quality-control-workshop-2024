@@ -1,6 +1,6 @@
 # "Testing 1, 2, 3" Exercise {.unnumbered}
 
-To setup this exercise, bring up an existing repository, or create a new repository called "testing-123", and navigate there from the command line. Also open the repository using your text editor.
+To setup this exercise, bring up an existing repository, or create a new repository called "testing-123". Navigate there from the command line, and open the repository using your text editor.
 
 Inside the repository, create subdirectories called "app" and "test", respectively.
 
@@ -45,8 +45,8 @@ Observe, the test file imports the function we want to test from where it has be
 
 We will use [the `pytest` package](../../notes/pytest.qmd) to find and run these tests. There are some rules about how to name your tests in order for `pytest` to be able to successfully find and run them:
 
-  + The test directory name must be "test" singular, or "tests" plural.
-  + The test file name must begin with "test_", or end with "_test.py".
+  + The test directory name must be "test" singular or "tests" plural.
+  + The test file name must begin with "test_" or end with "_test.py".
   + The test function name must begin with "test_".
 
 We run the tests from the command-line using the `pytest` package (which needs to be installed first):

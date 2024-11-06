@@ -69,7 +69,7 @@ def determine_outcome(u, c):
 
 #
 # IF STATEMENT WITH COMPOUND EXPRESSIONS APPROACH FOR READABILITY, WITH TIES COVERED FIRST:
-# (1-8 calculations)
+# (1-7 calculations)
 #
 
 def determine_outcome(u, c):

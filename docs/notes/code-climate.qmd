@@ -1,12 +1,9 @@
 
 # Code Climate
 
-Code Climate is a third-party service which integrates into your GitHub workflow to provide automated assessments of your code's quality and complexity. This service helps you write better code.
+[Code Climate](https://codeclimate.com/) is a third-party platform which integrates into your GitHub workflow to provide automated code assessments.
 
-References:
-
-  + [Code Climate](https://codeclimate.com/)
-  + [Code Climate - Quality Service](https://codeclimate.com/quality/)
+Code Climate offers multiple services, including the Velocity Service to measure developer team productivity, however we will focus exclusively on the [Quality Service](https://codeclimate.com/quality/) to provide automated assessments of code quality and complexity.
 
 ## Setup
 
@@ -15,12 +12,24 @@ Adding Code Climate to your GitHub Workflow:
   + <https://docs.codeclimate.com/docs/workflow>
   + <https://docs.codeclimate.com/docs/github-pull-requests>
 
-## Code Quality Assessments
+### Plugins
 
+Configuring [Plugins](https://docs.codeclimate.com/docs/list-of-engines) via the repository's "Plugins" settings menu in Code Climate:
+
+  + "Duplication" checks for code duplication
+  + "Structure" performs structural checks on code
+  + "Markdownlint" checks formatting of Markdown code
+  + "Black", "Pep8", and "Pylint" check formatting and style of Python code
+  + "Radon" checks for code complexity
+  + "Bandit" checks for security issues
+  + "SonarPython" checks for complexity, duplication, performance, security, and style
+
+## Usage
+
+### Code Quality Assessments
 
 ![](./../images/code-climate/codebase-summary.png)
 
-## Code Complexity Assessments
-
+### Code Complexity Assessments
 
 ![](./../images/code-climate/complexity-issues.png)

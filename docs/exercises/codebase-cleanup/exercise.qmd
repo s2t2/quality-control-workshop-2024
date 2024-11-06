@@ -1,39 +1,16 @@
 # "Codebase Cleanup" Exercise {.unnumbered}
 
-In this exercise we will cover an example of refactoring, as well as considerations for importing code from one file to another in Python.
-
-Primary topics in focus include: refactoring code using custom functions, and the "main conditional" (a Python convention which allows certain code to be imported from a file, without running other parts of the file).
+In this exercise we will practice refactoring and testing Python code. Primary topics in focus include: refactoring code using custom functions, organizing code using the "main conditional" (a Python convention which allows certain code to be imported from a file, without running other parts of the file), and implementing automated tests for those functions.
 
 ## Setup
 
-### Repo Setup
+To setup this exercise, bring up an existing repository, or create a new repository called "codebase-cleanup". Navigate there from the command line, and open the repository using your text editor.
 
-First create a new directory or Git repository called "rps-app-2024" somewhere on your computer, for example on the Desktop.
+Inside the repository, create subdirectories called "app" and "test", respectively.
 
-Navigate there from the command line, and open it using your test editor, for example:
+Also create and/or activate a project-specific virtual environment, as necessary.
 
-```sh
-cd ~/Desktop/rps-app-2024
-code .
-```
-
-Add a "README.md" file in the root directory.
-
-Inside the the root directory, create a subdirectory called "app", in which we will place some files of Python application code.
-
-### Environment Setup
-
-You can use the Anaconda base environment, or ideally create and activate a new project-specific environment (for example called `rps-env`):
-
-```sh
-conda create -n rps-env python=3.11
-conda activate rps-env
-```
-
-Ideally add these environment setup instructions to the "README.md" file.
-
-## Starter Code
-
+### Starter Code
 
 Create a file in the "app" directory called "rps.py", and place inside the following contents, and save the file:
 
@@ -85,7 +62,7 @@ elif u == "scissors" and c == "scissors":
 
 ```
 
-> NOTE: this code intentionally has a bug in the winner determination logic, which we will fix later
+> NOTE: this code intentionally has a bug in the winner determination logic, which we will fix later.
 
 
 After saving the file, run the file from the command line to play the game, choosing "rock" when prompted:
@@ -104,14 +81,12 @@ If using version control, make a commit before moving on.
 
 ## Maintenance Challenges
 
-After releasing your code to end users, and playing a few more games, you start to receive some bug report messages saying "Sometimes the program gets the winner wrong!".
+After releasing the code to end users, you start to receive some bug report messages saying "Sometimes the program gets the winner wrong!".
 
-Your objective is to revise the Python code to improve maintainability, and fix the bug. Along the way, take opportunities to improve the code's style, and remove duplication. Also refactor, (optionally test), and document the winner determination logic. Optionally reduce complexity in the winner determination logic. If you have time, extend the logic by creating a GUI or web-based version of the game.
-
-> NOTE: we will return to testing python applications in much more detail in a future workshop
+Your objective is to revise the Python code to improve maintainability, and fix the bug. Along the way, take opportunities to improve the code's style, and remove duplication. Also refactor, test, and document the winner determination logic. Optionally reduce complexity in the winner determination logic. If you have time, extend the logic by creating a GUI or web-based version of the game.
 
 :::{.callout-warning title="Spoiler Alert"}
-See the ["rps.py" file](./repo/app/rps.py) for solutions to the challenges below.
+See the [solutions file](./repo/app/rps_solutions.py) for solutions to the challenges below.
 :::
 
 ### Syntax and Style
@@ -148,7 +123,7 @@ How do we know the function works? Let's test it in an automated way.
 **Challenge 6**: Implement an automated test to ensure the winner determination logic produces accurate outcomes, given all possible combinations of the inputs.
 
 
-Adding a test:
+Adding a new "rps_test.py" file to the "test" directory, with the following contents:
 
 ```python
 # this is the "test/rps_test.py" file...
@@ -156,7 +131,8 @@ Adding a test:
 from app.rps import determine_outcome
 
 def test_winners():
-    # example tests:
+    # tests for all edge cases:
+
     assert determine_outcome(u="rock", c="rock") == "TIE GAME"
     assert determine_outcome(u="rock", c="paper") == "COMPUTER WINS"
     assert determine_outcome(u="rock", c="scissors") == "USER WINS"
@@ -199,17 +175,18 @@ If we have written our tests, we will have seen them failing, but after fixing t
 
 Since we have created a new custom function, we might as well take a moment to document it, to make it more understandable for others.
 
-**Challenge 8**: Document the new winner determination function, using a docstring. Include a description of the function's responsibilities, the parameters it accepts, and the values it returns. Consider formatting your docstring using google-style or numpy-style docstring syntax.
+**Challenge 8**: Document the new winner determination function, using a docstring. Include a description of the function's responsibilities, the parameters it accepts, and the values it returns. Consider optionally formatting your docstring using google-style or numpy-style docstring syntax.
 
+> NOTE: if you need help constructing a docstring using the desired formats, provide the function code to ChatGPT and ask it to create a google-style or numpy-style docstring for you :robot:
 
 ### Reducing Complexity
 
-Optionally integrate your repository with [Code Climate](https://codeclimate.com/quality), and perform a code complexity assessment. Notice Code Climate says the existing winner determination logic is "complex".
+Optionally integrate your repository with [Code Climate](../../notes/code-climate.qmd), and perform a code complexity assessment. Notice Code Climate says the existing winner determination logic is "complex".
 
 **Challenge 9**: Refactor the complex logic to use less computational steps. HINT: you can use a nested if statement, or better yet a nested dictionary to model the winners.
 
 :::{.callout-warning title="Spoiler Alert"}
-See the ["complexity_solutions.py" file](./repo/app/complexity_solutions.py) for multiple options, and discuss the complexity of each.
+See the [complexity solutions file](./repo/app/rps_complexity.py) for multiple options, and discuss the complexity of each.
 :::
 
 ### Enabling Extensibility
@@ -219,5 +196,5 @@ Suppose we want to keep the command-line game, but implement a graphical user in
 **Challenge 10**. Create a new file called "rps_web.py", to implement a web-based version of the game. For creating web applications, we will use the `flask` package.
 
 :::{.callout-warning title="Spoiler Alert"}
-See the ["rps_web.py" file](./repo/app/rps_web.py) for some solution code to make a web application.
+See the [web app solutions file](./repo/app/rps_web.py) for some solution code to make a web application.
 :::
